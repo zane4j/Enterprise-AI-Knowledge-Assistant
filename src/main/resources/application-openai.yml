@@ -1,0 +1,13 @@
+spring:
+  config:
+    activate:
+      on-profile: openai
+  ai:
+    model:
+      chat: openai
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      base-url: ${OPENAI_BASE_URL:https://api.openai.com}
+      chat:
+        model: ${OPENAI_CHAT_MODEL:gpt-5-mini}
+        temperature: ${OPENAI_TEMPERATURE:0.2}
