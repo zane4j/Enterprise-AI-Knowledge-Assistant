@@ -1,17 +1,27 @@
-name: Build
+name: CI
 
 on:
   pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   verify:
+    name: Maven verify (Java 21)
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -23,5 +33,5 @@ jobs:
           java-version: '21'
           cache: maven
 
-      - name: Verify
-        run: mvn --batch-mode verify
+      - name: Build and test
+        run: mvn --batch-mode --no-transfer-progress clean verify
