@@ -1,3 +1,4 @@
+# Trigger CI after GitHub Actions settings were enabled.
 name: CI
 
 on:
