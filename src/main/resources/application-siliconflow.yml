@@ -1,0 +1,12 @@
+spring:
+  config:
+    activate:
+      on-profile: siliconflow
+  ai:
+    model:
+      chat: openai
+    openai:
+      base-url: ${SILICONFLOW_BASE_URL:https://api.siliconflow.cn}
+      api-key: ${SILICONFLOW_API_KEY}
+      chat:
+        model: ${SILICONFLOW_CHAT_MODEL}
